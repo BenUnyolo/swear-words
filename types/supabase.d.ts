@@ -81,7 +81,14 @@ export interface Database {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      handle_match: {
+        Args: {
+          choice_1_input: number
+          choice_2_input: number
+          winner_id_input: number
+        }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never
