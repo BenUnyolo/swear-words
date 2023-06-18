@@ -12,5 +12,10 @@ export const LastUpdated: React.FC<ILastUpdatedProps> = ({ updatedDate }) => {
   console.log("currentDate: ", currentDate);
   console.log("updatedDate: ", updatedDate);
 
-  return <>Last updated {formatRelative(updatedDate, currentDate)}</>;
+  return (
+    <>
+      <>child: {updatedDate}</>
+      Last updated {formatRelative(updatedDate, currentDate)}
+    </>
+  );
 };
