@@ -23,7 +23,6 @@ export default async function Ranking() {
       {words ? (
         <>
           <p className="mb-2 text-sm opacity-80">
-            <div>parent: {updatedDate.toTimeString()}</div>
             <LastUpdated updatedDate={updatedDate} />
           </p>
           <ol className="list-inside list-decimal space-y-2">
