@@ -1,0 +1,41 @@
+import { supabase } from "@/lib/supabaseClient";
+import formatRelative from "date-fns/formatRelative";
+
+export const revalidate = 120;
+
+const updatedDate = new Date();
+
+export default async function Ranking() {
+  let { data: words, error } = await supabase
+    .from("words")
+    .select("id,word,rating")
+    .or("wins.gt.0,losses.gt.0")
+    .order("rating", { ascending: false });
+
+  if (error) {
+    console.error(error);
+  }
+
+  const currentDate = new Date();
+
+  return (
+    <div className="flex-1">
+      <h1 className="mb-1 text-3xl md:text-4xl">Ranking</h1>
+      {words ? (
+        <>
+          <p className="mb-2 text-sm opacity-80">
+            Last updated {formatRelative(updatedDate, currentDate)}
+          </p>
+          <ol className="list-inside list-decimal space-y-2">
+            {words.map((d) => {
+              const { id, word } = d;
+              return <li key={id}>{word}</li>;
+            })}
+          </ol>
+        </>
+      ) : (
+        <p>There was an issue fetching the ranking, try refreshing the page.</p>
+      )}
+    </div>
+  );
+}
