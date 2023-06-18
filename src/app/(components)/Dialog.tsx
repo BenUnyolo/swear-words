@@ -46,28 +46,20 @@ export const InstructionsDialog = () => {
               >
                 <Dialog.Panel className="w-full max-w-lg transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title as="h3" className="text-xl font-bold">
-                    Welcome to swearwords.co.uk!
+                    Welcome to SwearWords.co.uk!
                   </Dialog.Title>
                   <div className="mt-2">
-                    {/* <p className=""> */}
-                    <ul>
+                    <ul className="list-inside list-decimal space-y-4">
                       <li>
-                        Click the button for the swear word you think is more
-                        offensive.
+                        Cast your vote for the swear word you find most
+                        offensive by clicking the button.
                       </li>
+                      <li>You can generate new words with the skip button.</li>
                       <li>
-                        You can generate new choices with the reset button.
-                      </li>
-                      <li>
-                        To see the current ranking of swear words, click the
-                        trophy icon in the top right.
+                        Click the trophy icon located at the top right of your
+                        screen to view the ongoing rankings.
                       </li>
                     </ul>
-                    {/* Click the button for the swear word you think is more
-                      offensive. You can generate new choices with the reset
-                      button. To see the current ranking of swear words, click
-                      the trophy icon in the top right. */}
-                    {/* </p> */}
                   </div>
 
                   <div className="mt-4">
@@ -77,7 +69,7 @@ export const InstructionsDialog = () => {
                       // className="btn-sm inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={() => setIsDialogOpen(false)}
                     >
-                      Lets go!
+                      Get on with it!
                     </button>
                   </div>
                 </Dialog.Panel>

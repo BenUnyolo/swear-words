@@ -9,7 +9,7 @@ import {
   Fragment,
 } from "react";
 import { Turnstile, TurnstileInstance } from "@marsidev/react-turnstile";
-import { ArrowsCounterClockwise } from "@phosphor-icons/react";
+import { ArrowClockwise } from "@phosphor-icons/react";
 import { generateChoices, Choices } from "./generateChoices";
 import { Question, CircleNotch, Check } from "@phosphor-icons/react";
 import { AppContext } from "@/context";
@@ -167,10 +167,14 @@ export const Match = () => {
               type="submit"
               value="reset choices"
               // TODO: add some link styles to global
-              className="mt-4 text-2xl text-blue-500 transition duration-200 hover:text-blue-950  disabled:text-slate-500"
+              className="mt-4 flex items-center text-2xl text-blue-500 transition duration-200 hover:text-blue-950  disabled:text-slate-500"
               disabled={disableButtons}
             >
-              <ArrowsCounterClockwise className="inline-block" /> reset choices
+              <ArrowClockwise
+                className="mr-2 inline-block"
+                aria-hidden={true}
+              />{" "}
+              skip
             </button>
 
             {/* 
