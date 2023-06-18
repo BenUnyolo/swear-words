@@ -2,6 +2,7 @@ import { supabase } from "@/lib/supabaseClient";
 import { LastUpdated } from "./LastUpdated";
 
 export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 const updatedDate = new Date();
 
