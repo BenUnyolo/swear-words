@@ -1,5 +1,5 @@
 import { supabase } from "@/lib/supabaseClient";
-import formatRelative from "date-fns/formatRelative";
+import { LastUpdated } from "./LastUpdated";
 
 export const revalidate = 120;
 
@@ -16,15 +16,13 @@ export default async function Ranking() {
     console.error(error);
   }
 
-  const currentDate = new Date();
-
   return (
     <div className="flex-1">
       <h1 className="mb-1 text-3xl md:text-4xl">Ranking</h1>
       {words ? (
         <>
           <p className="mb-2 text-sm opacity-80">
-            Last updated {formatRelative(updatedDate, currentDate)}
+            <LastUpdated updatedDate={updatedDate} />
           </p>
           <ol className="list-inside list-decimal space-y-2">
             {words.map((d) => {
