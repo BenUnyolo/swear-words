@@ -1,12 +1,12 @@
 import { supabase } from "@/lib/supabaseClient";
 import { LastUpdated } from "./LastUpdated";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
-
-const updatedDate = new Date();
+// export const dynamic = "force-dynamic";
+export const revalidate = 20;
 
 export default async function Ranking() {
+  const updatedDate = new Date();
+
   let { data: words, error } = await supabase
     .from("words")
     .select("id,word,rating")
