@@ -1,8 +1,8 @@
 import { supabase } from "@/lib/supabaseClient";
 import { LastUpdated } from "./LastUpdated";
 
-// export const dynamic = "force-dynamic";
-export const revalidate = 20;
+export const dynamic = "force-dynamic";
+// export const revalidate = 20;
 
 export default async function Ranking() {
   const updatedDate = new Date();
