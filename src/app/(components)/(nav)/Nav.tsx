@@ -22,7 +22,7 @@ export const Nav = (props: any) => {
   return (
     <nav className="flex h-16 items-center">
       <Link href="/" className="mr-auto text-2xl font-bold">
-        swearwords.co.uk
+        SwearWords.co.uk
       </Link>
       <div className="flex space-x-4">
         {isHome ? (
