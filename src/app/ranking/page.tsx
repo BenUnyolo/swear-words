@@ -21,9 +21,9 @@ export default async function Ranking() {
       <h1 className="mb-1 text-3xl md:text-4xl">Ranking</h1>
       {words ? (
         <>
-          {/* <p className="mb-2 text-sm opacity-80">
+          <p className="mb-2 text-sm opacity-80">
             <LastUpdated updatedDate={updatedDate} />
-          </p> */}
+          </p>
           <ol className="list-inside list-decimal space-y-2">
             {words.map((d) => {
               const { id, word } = d;
