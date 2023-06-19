@@ -10,6 +10,22 @@ body {
   @apply bg-blue-50 px-6 text-xl text-blue-950;
 }
 
+.link {
+  @apply text-blue-500 transition duration-200 hover:text-blue-950 disabled:text-slate-500;
+}
+
+.nav-link {
+  @apply transition duration-200 hover:text-blue-500;
+}
+
+.error-msg {
+  @apply text-red-600;
+}
+
+.error-msg .link {
+  @apply text-red-900 hover:underline;
+}
+
 /* h-32 w-64 rounded-2xl bg-blue-500 text-2xl font-bold text-blue-50 transition duration-200 hover:scale-[1.03] disabled:scale-100 sm:h-40 sm:w-80 sm:text-4xl */
 .btn {
   @apply inline-flex items-center justify-center border border-transparent px-4 py-2;

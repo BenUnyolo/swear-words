@@ -13,7 +13,7 @@ export default function Hamburger() {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div className="flex items-center">
-        <Menu.Button className="text-2xl">
+        <Menu.Button className="nav-link text-2xl">
           <span className="sr-only">Menu</span>
           <List weight="bold" aria-hidden="true" />
         </Menu.Button>
