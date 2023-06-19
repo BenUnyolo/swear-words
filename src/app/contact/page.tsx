@@ -3,7 +3,7 @@
 import { Turnstile } from "@marsidev/react-turnstile";
 import { SyntheticEvent, useRef, useState } from "react";
 import { SelectField } from "./Select";
-import { Check } from "@phosphor-icons/react";
+import { Check, Warning } from "@phosphor-icons/react";
 
 const typeOptions = [
   { label: "General enquiry", value: "General enquiry" },
@@ -77,16 +77,14 @@ export default function Contact() {
 
       if (!res.ok) {
         setErrorMessage(
-          `Error ${res.status}: Please try again in a few minutes. If this problem persists please email XXX.`
+          `Error ${res.status}: Please try again in a few minutes.`
         );
         setIsProcessing(false);
         return;
       }
       setIsFormSubmitted(true);
     } catch (e) {
-      setErrorMessage(
-        `Error Unknown: Please try again in a few minutes. If this problem persists please email XXX.`
-      );
+      setErrorMessage(`Error Unknown: Please try again in a few minutes.`);
     }
 
     setIsProcessing(false);
@@ -177,6 +175,10 @@ export default function Contact() {
               id="turnstileDiv"
             />
           </div>
+
+          {errorMessage && (
+            <p className="error-msg mt-4 flex">{errorMessage}</p>
+          )}
 
           <button
             type="submit"

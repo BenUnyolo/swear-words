@@ -40,7 +40,7 @@ export async function POST(request: Request) {
 
     const msg = {
       to: "benunyolo@gmail.com",
-      from: "contact-form@bensbeer.club", // Use the email address or domain you verified above
+      from: "contactform@swearwords.co.uk",
       subject: `Swear Words: ${encode(body.type)}`,
       // text: "and easy to do anywhere, even with Node.js",
       html: `

@@ -21,13 +21,17 @@ export const Nav = (props: any) => {
 
   return (
     <nav className="flex h-16 items-center">
-      <Link href="/" className="mr-auto text-2xl font-bold">
+      <Link href="/" className="nav-link mr-auto text-2xl font-bold">
         SwearWords.co.uk
       </Link>
       <div className="flex space-x-4">
         {isHome ? (
           <div className="relative">
-            <Link href="/ranking" prefetch={false} className="text-2xl">
+            <Link
+              href="/ranking"
+              prefetch={false}
+              className="nav-link text-2xl"
+            >
               <Trophy weight="bold" />
             </Link>
             <>
@@ -54,7 +58,7 @@ export const Nav = (props: any) => {
             </>
           </div>
         ) : (
-          <Link href="/" className="text-2xl">
+          <Link href="/" className="nav-link text-2xl">
             <House weight="bold" />
           </Link>
         )}

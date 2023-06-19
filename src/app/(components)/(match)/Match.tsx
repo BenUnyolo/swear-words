@@ -15,6 +15,7 @@ import { Question, CircleNotch, Check } from "@phosphor-icons/react";
 import { AppContext } from "@/context";
 import { HoneypotField } from "./HoneypotField";
 import { ChoiceButton } from "./ChoiceButton";
+import Link from "next/link";
 
 export type MatchLifecycle =
   | "pending-turnstile-pass"
@@ -33,7 +34,7 @@ export const Match = () => {
 
   const [lastChoice, setLastChoice] = useState<number>(0);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState<React.ReactNode>("");
   const [turnstilePassed, setTurnstilePassed] = useState(false);
   const [isResetPending, setIsResetPending] = useState(false);
   const [hpOne, setHpOne] = useState<string>("");
@@ -91,9 +92,7 @@ export const Match = () => {
 
         resetChoices();
       } catch (e) {
-        setErrorMessage(
-          `🤖 Error Unknown: Please try again in a few minutes . If this problem persists please email XXX.`
-        );
+        setErrorMessage(`🤖 Error Unknown: Please try again in a few minutes.`);
       }
 
       setIsProcessing(false);
@@ -118,7 +117,14 @@ export const Match = () => {
 
       if (!res.ok) {
         setErrorMessage(
-          `Error ${res.status}: Please try again in a few minutes. If this problem persists please email XXX.`
+          <>
+            Error {res.status}: Please try again in a few minutes. If this
+            problem persists please{" "}
+            <Link href="/contact" className="link">
+              get in touch
+            </Link>
+            .
+          </>
         );
         setIsProcessing(false);
         return;
@@ -129,7 +135,14 @@ export const Match = () => {
       resetChoices();
     } catch (e) {
       setErrorMessage(
-        `Error Unknown: Please try again in a few minutes. If this problem persists please email XXX.`
+        <>
+          Error unknown: Please try again in a few minutes. If this problem
+          persists please{" "}
+          <Link href="/contact" className="link">
+            get in touch
+          </Link>
+          .
+        </>
       );
     }
 
@@ -167,7 +180,7 @@ export const Match = () => {
               type="submit"
               value="reset choices"
               // TODO: add some link styles to global
-              className="mt-4 flex items-center text-2xl text-blue-500 transition duration-200 hover:text-blue-950  disabled:text-slate-500"
+              className="link mt-4 flex items-center text-2xl"
               disabled={disableButtons}
             >
               <ArrowClockwise
@@ -200,7 +213,7 @@ export const Match = () => {
              ERRORS
             */}
               {(errorMessage || hpOne || hpTwo) && (
-                <div className="max-w-sm space-y-4 text-base text-red-700 md:max-w-2xl">
+                <div className="error-msg max-w-sm space-y-4 text-base md:max-w-2xl">
                   {(hpOne || hpTwo) && (
                     <p className="">{`🙁 You shouldn't see this message, your votes aren't being counted.`}</p>
                   )}

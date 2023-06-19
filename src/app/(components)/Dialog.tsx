@@ -49,7 +49,7 @@ export const InstructionsDialog = () => {
                     Welcome to SwearWords.co.uk!
                   </Dialog.Title>
                   <div className="mt-2">
-                    <ul className="list-inside list-decimal space-y-4">
+                    <ul className="list-inside list-decimal space-y-3 leading-tight">
                       <li>
                         Cast your vote for the swear word you find most
                         offensive by clicking the button.
