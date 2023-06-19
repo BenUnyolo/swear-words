@@ -219,7 +219,7 @@ export const Match = () => {
               */}
                 <div
                   className={`absolute left-1/2 top-0 -translate-x-1/2 -translate-y-[calc(100%+1rem)] ${
-                    turnstilePassed && !isResetPending ? "-z-10" : ""
+                    turnstilePassed && !isResetPending ? "-z-10 opacity-0" : ""
                   }`}
                 >
                   <Turnstile
