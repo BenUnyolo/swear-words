@@ -27,7 +27,7 @@ export const Nav = (props: any) => {
       <div className="flex space-x-4">
         {isHome ? (
           <div className="relative">
-            <Link href="/ranking" className="text-2xl">
+            <Link href="/ranking" prefetch={false} className="text-2xl">
               <Trophy weight="bold" />
             </Link>
             <>

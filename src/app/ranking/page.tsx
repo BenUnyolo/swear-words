@@ -1,9 +1,7 @@
 import { supabase } from "@/lib/supabaseClient";
 import { LastUpdated } from "./LastUpdated";
 
-export const revalidate = 0;
-
-const updatedDate = new Date();
+export const dynamic = "force-dynamic";
 
 export default async function Ranking() {
   let { data: words, error } = await supabase
@@ -15,6 +13,8 @@ export default async function Ranking() {
   if (error) {
     console.error(error);
   }
+
+  const updatedDate = new Date();
 
   return (
     <div className="flex-1">
