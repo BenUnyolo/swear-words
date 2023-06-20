@@ -18,7 +18,7 @@ export default async function Ranking() {
 
   return (
     <div className="flex-1">
-      <h1 className="mb-1 text-3xl md:text-4xl">Ranking</h1>
+      <h1>Ranking</h1>
       {words ? (
         <>
           <p className="mb-2 text-sm opacity-80">
