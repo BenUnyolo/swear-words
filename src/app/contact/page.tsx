@@ -5,10 +5,6 @@ import { SyntheticEvent, useRef, useState } from "react";
 import { SelectField } from "./Select";
 import { Check, Warning } from "@phosphor-icons/react";
 
-export const metadata = {
-  title: "Contact",
-};
-
 const typeOptions = [
   { label: "General enquiry", value: "General enquiry" },
   { label: "Report an issue", value: "Report an issue" },
