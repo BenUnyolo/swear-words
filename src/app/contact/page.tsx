@@ -5,10 +5,6 @@ import { SyntheticEvent, useRef, useState } from "react";
 import { SelectField } from "./Select";
 import { Check, Warning } from "@phosphor-icons/react";
 
-export const metadata = {
-  title: "Contact",
-};
-
 const typeOptions = [
   { label: "General enquiry", value: "General enquiry" },
   { label: "Report an issue", value: "Report an issue" },
@@ -98,7 +94,7 @@ export default function Contact() {
 
   return (
     <div className="flex-1">
-      <h1 className="mb-1 text-3xl md:text-4xl">Contact</h1>
+      <h1>Contact</h1>
       {!isFormSubmitted ? (
         <form onSubmit={handleSubmit} ref={formRef}>
           {/* TODO: set up honeypot */}
