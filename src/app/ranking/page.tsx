@@ -1,6 +1,10 @@
 import { supabase } from "@/lib/supabaseClient";
 import { LastUpdated } from "./LastUpdated";
 
+export const metadata = {
+  title: "Ranking",
+};
+
 export const dynamic = "force-dynamic";
 
 export default async function Ranking() {

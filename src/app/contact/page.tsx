@@ -5,6 +5,10 @@ import { SyntheticEvent, useRef, useState } from "react";
 import { SelectField } from "./Select";
 import { Check, Warning } from "@phosphor-icons/react";
 
+export const metadata = {
+  title: "Contact",
+};
+
 const typeOptions = [
   { label: "General enquiry", value: "General enquiry" },
   { label: "Report an issue", value: "Report an issue" },
@@ -76,6 +80,8 @@ export default function Contact() {
       });
 
       if (!res.ok) {
+        const resJson = await res.json();
+        // console.log(resJson);
         setErrorMessage(
           `Error ${res.status}: Please try again in a few minutes.`
         );

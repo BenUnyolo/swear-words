@@ -1,5 +1,9 @@
 import Link from "next/link";
 
+export const metadata = {
+  title: "Privacy Policy",
+};
+
 export default function Privacy() {
   return (
     <div className="privacy-policy flex-1">
