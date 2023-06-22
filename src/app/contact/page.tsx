@@ -76,6 +76,8 @@ export default function Contact() {
       });
 
       if (!res.ok) {
+        const resJson = await res.json();
+        // console.log(resJson);
         setErrorMessage(
           `Error ${res.status}: Please try again in a few minutes.`
         );

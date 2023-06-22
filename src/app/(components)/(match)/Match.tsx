@@ -105,6 +105,9 @@ export const Match = () => {
     const token = formData.get("cf-turnstile-response");
 
     try {
+      setIsResetPending(true);
+      turnstileRef.current?.reset();
+
       const res = await fetch("/api/match", {
         method: "POST",
         body: JSON.stringify({
@@ -130,8 +133,6 @@ export const Match = () => {
         return;
       }
 
-      setIsResetPending(true);
-      turnstileRef.current?.reset();
       resetChoices();
     } catch (e) {
       setErrorMessage(
