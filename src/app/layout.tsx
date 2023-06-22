@@ -13,9 +13,23 @@ const nunito = Nunito({ subsets: ["latin"] });
 // Karla;
 
 export const metadata = {
-  title: "SwearWords.co.uk",
+  title: "SwearWords.co.uk: The Definitive Ranking of British Swear Words",
   description:
     "Help create the definitive ranking of British swear words! Your votes determine which words are the most offensive. Not for the faint-hearted or easily offended!",
+  openGraph: {
+    title: "SwearWords.co.uk: The Definitive Ranking of British Swear Words",
+    description:
+      "Help create the definitive ranking of British swear words! Your votes determine which words are the most offensive. Not for the faint-hearted or easily offended!",
+    url: "https://swearwords.co.uk",
+    images: [
+      {
+        url: "/sw_og.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -27,7 +41,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={nunito.className}>
         <ContextProvider>
-          <div className={`flex min-h-screen flex-col`}>
+          <div className={`mx-auto flex min-h-screen max-w-4xl flex-col`}>
             <Nav />
             <main className="grow">
               <div className="flex min-h-[calc(100vh-8rem)] flex-col justify-center">

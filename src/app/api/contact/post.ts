@@ -2,9 +2,28 @@ import { supabase } from "@/lib/supabaseClient";
 import { NextResponse } from "next/server";
 import sgMail from "@sendgrid/mail";
 import { encode } from "html-entities";
+import validator from "validator";
 
 export async function POST(request: Request) {
   const body = await request.json();
+
+  const { name, email, type, message } = body;
+
+  const validation = [
+    validator.isLength(name, { min: 2, max: 10 }),
+    validator.isEmail(email),
+    validator.isLength(type, { min: 2, max: 100 }),
+    validator.isLength(message, { min: 25, max: 1500 }),
+  ];
+
+  if (!validation.every(Boolean)) {
+    return NextResponse.json(
+      { error: "There was an issue validating the form inputs" },
+      { status: 400 }
+    );
+  }
+
+  validator.isEmail("foo@bar.com");
 
   // CLOUDFLARE CHECK
   try {
@@ -41,13 +60,13 @@ export async function POST(request: Request) {
     const msg = {
       to: "benunyolo@gmail.com",
       from: "contactform@swearwords.co.uk",
-      subject: `Swear Words: ${encode(body.type)}`,
+      subject: `Swear Words: ${encode(type)}`,
       // text: "and easy to do anywhere, even with Node.js",
       html: `
-      <div><strong>Name</strong>: ${encode(body.name)}</div>
-      <div><strong>Email</strong>: ${encode(body.email)}</div>
-      <div><strong>Type</strong>: ${encode(body.type)}</div>
-      <div><strong>Message</strong>: ${encode(body.message)}</div>
+        <div><strong>Name</strong>: ${encode(name)}</div>
+        <div><strong>Email</strong>: ${encode(email)}</div>
+        <div><strong>Type</strong>: ${encode(type)}</div>
+        <div><strong>Message</strong>: ${encode(message)}</div>
       `,
     };
 
