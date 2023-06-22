@@ -23,7 +23,7 @@ export const metadata = {
     url: "https://swearwords.co.uk",
     images: [
       {
-        url: "/sw_og.png",
+        url: "https://www.swearwords.co.uk/sw_og.png",
         width: 1200,
         height: 630,
       },
