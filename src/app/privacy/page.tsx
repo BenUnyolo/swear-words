@@ -1,3 +1,7 @@
+export const metadata = {
+  title: "Privacy Policy",
+};
+
 export default function Privacy() {
   return (
     <div className="flex-1">
