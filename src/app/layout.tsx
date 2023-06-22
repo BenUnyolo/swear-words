@@ -5,7 +5,6 @@ import { ContextProvider } from "../context";
 import Script from "next/script";
 
 const nunito = Nunito({ subsets: ["latin"] });
-// Nunito;
 // Rubik;
 // Poppins;
 // Outfit;
@@ -13,9 +12,26 @@ const nunito = Nunito({ subsets: ["latin"] });
 // Karla;
 
 export const metadata = {
-  title: "SwearWords.co.uk",
+  title: {
+    template: "%s | SwearWords.co.uk",
+    default: "SwearWords.co.uk: The Definitive Ranking of British Swear Words", // a default is required when creating a template
+  },
   description:
     "Help create the definitive ranking of British swear words! Your votes determine which words are the most offensive. Not for the faint-hearted or easily offended!",
+  openGraph: {
+    title: "SwearWords.co.uk: The Definitive Ranking of British Swear Words",
+    description:
+      "Help create the definitive ranking of British swear words! Your votes determine which words are the most offensive. Not for the faint-hearted or easily offended!",
+    url: "https://swearwords.co.uk",
+    images: [
+      {
+        url: "https://www.swearwords.co.uk/sw_og.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -27,11 +43,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={nunito.className}>
         <ContextProvider>
-          <div className={`flex min-h-screen flex-col`}>
+          <div className={`mx-auto flex min-h-screen max-w-4xl flex-col`}>
             <Nav />
             <main className="grow">
               <div className="flex min-h-[calc(100vh-8rem)] flex-col justify-center">
-                {/* <div className="flex min-h-[calc(100vh-8rem)] flex-col items-center justify-center space-y-4"> */}
                 {children}
               </div>
             </main>
