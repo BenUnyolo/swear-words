@@ -5,7 +5,6 @@ import { ContextProvider } from "../context";
 import Script from "next/script";
 
 const nunito = Nunito({ subsets: ["latin"] });
-// Nunito;
 // Rubik;
 // Poppins;
 // Outfit;
@@ -13,7 +12,10 @@ const nunito = Nunito({ subsets: ["latin"] });
 // Karla;
 
 export const metadata = {
-  title: "SwearWords.co.uk: The Definitive Ranking of British Swear Words",
+  title: {
+    template: "%s | SwearWords.co.uk",
+    default: "SwearWords.co.uk: The Definitive Ranking of British Swear Words", // a default is required when creating a template
+  },
   description:
     "Help create the definitive ranking of British swear words! Your votes determine which words are the most offensive. Not for the faint-hearted or easily offended!",
   openGraph: {
@@ -45,7 +47,6 @@ export default function RootLayout({
             <Nav />
             <main className="grow">
               <div className="flex min-h-[calc(100vh-8rem)] flex-col justify-center">
-                {/* <div className="flex min-h-[calc(100vh-8rem)] flex-col items-center justify-center space-y-4"> */}
                 {children}
               </div>
             </main>
