@@ -40,7 +40,7 @@
     "encoding": "^0.1.13",
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.3.0",
-    "supabase": "^1.58.1"
+    "supabase": "^2.119.0"
   },
   "engines": {
     "node": "24.x"
