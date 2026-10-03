@@ -19,8 +19,11 @@ export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
   if (pathname.startsWith("/api")) {
+    const ip =
+      request.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
+      "127.0.0.1";
     const ipHash = bcrypt.hashSync(
-      request.ip ?? "127.0.0.1",
+      ip,
       process.env.BCRYPT_SALT!
     );
 
