@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { verifyTurnstile } from "@/lib/turnstile";
 import sgMail from "@sendgrid/mail";
 import { encode } from "html-entities";
 import validator from "validator";
@@ -9,7 +10,7 @@ export async function POST(request: Request) {
   const { name, email, type, message } = body;
 
   const validation = [
-    validator.isLength(name, { min: 2, max: 10 }),
+    validator.isLength(name, { min: 2, max: 100 }),
     validator.isEmail(email),
     validator.isLength(type, { min: 2, max: 100 }),
     validator.isLength(message, { min: 25, max: 1500 }),
@@ -26,19 +27,7 @@ export async function POST(request: Request) {
 
   // CLOUDFLARE CHECK
   try {
-    const cloudflareRes = await fetch(process.env.CLOUDFLARE_VERIFY_ENDPOINT!, {
-      method: "POST",
-      body: `secret=${encodeURIComponent(
-        process.env.CLOUDFLARE_SECRET_KEY!
-      )}&response=${body.token}`,
-      headers: {
-        "content-type": "application/x-www-form-urlencoded",
-      },
-    });
-
-    const cloudflareResJson = await cloudflareRes.json();
-
-    if (!cloudflareResJson.success) {
+    if (!(await verifyTurnstile(body.token, "contact"))) {
       console.error("cloudflare check failed");
       return NextResponse.json(
         { error: "verification error" },

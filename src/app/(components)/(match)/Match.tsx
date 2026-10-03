@@ -36,6 +36,7 @@ export const Match = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [errorMessage, setErrorMessage] = useState<React.ReactNode>("");
   const [turnstilePassed, setTurnstilePassed] = useState(false);
+  const [turnstileFailed, setTurnstileFailed] = useState(false);
   const [isResetPending, setIsResetPending] = useState(false);
   const [hpOne, setHpOne] = useState<string>("");
   const [hpTwo, setHpTwo] = useState<string>("");
@@ -213,7 +214,7 @@ export const Match = () => {
               {/* 
              ERRORS
             */}
-              {(errorMessage || hpOne || hpTwo) && (
+              {(errorMessage || turnstileFailed || hpOne || hpTwo) && (
                 <div className="error-msg max-w-sm space-y-4 text-base md:max-w-2xl">
                   {(hpOne || hpTwo) && (
                     <p className="">{`🙁 You shouldn't see this message, your votes aren't being counted.`}</p>
@@ -223,6 +224,9 @@ export const Match = () => {
                     "Est nostrud voluptate proident in magna quis officia et culpa enim sit. Deserunt aute culpa in velit ut exercitation occaecat incididunt ipsum do qui."
                   }
                 </p> */}
+                  {turnstileFailed && (
+                    <p className="">{`🤖 We couldn't check you're human. Please refresh the page and try again.`}</p>
+                  )}
                   {errorMessage && <p className="">{errorMessage}</p>}
                 </div>
               )}
@@ -245,10 +249,14 @@ export const Match = () => {
                     }}
                     onSuccess={() => {
                       setTurnstilePassed(true);
+                      setTurnstileFailed(false);
                       setIsResetPending(false);
                     }}
                     onExpire={() => setTurnstilePassed(false)}
-                    onError={() => setTurnstilePassed(false)}
+                    onError={() => {
+                      setTurnstilePassed(false);
+                      setTurnstileFailed(true);
+                    }}
                     ref={turnstileRef}
                   />
                 </div>
