@@ -1,4 +1,4 @@
-import { supabase } from "@/lib/supabaseClient";
+import { sql } from "@/lib/db";
 import { LastUpdated } from "./LastUpdated";
 
 export const metadata = {
@@ -7,15 +7,18 @@ export const metadata = {
 
 export const dynamic = "force-dynamic";
 
-export default async function Ranking() {
-  let { data: words, error } = await supabase
-    .from("words")
-    .select("id,word,rating")
-    .or("wins.gt.0,losses.gt.0")
-    .order("rating", { ascending: false });
+type RankedWord = { id: number; word: string; rating: number };
 
-  if (error) {
-    console.error(error);
+export default async function Ranking() {
+  let words: RankedWord[] | null = null;
+  try {
+    words = (await sql`
+      SELECT id, word, rating FROM words
+      WHERE wins > 0 OR losses > 0
+      ORDER BY rating DESC
+    `) as RankedWord[];
+  } catch (e) {
+    console.error(e);
   }
 
   const updatedDate = new Date();

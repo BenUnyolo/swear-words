@@ -1,4 +1,4 @@
-import { supabase } from "@/lib/supabaseClient";
+import { sql } from "@/lib/db";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
@@ -34,18 +34,9 @@ export async function POST(request: Request) {
   }
 
   try {
-    const { data, error } = await supabase.rpc("handle_match", {
-      choice_1_input: body.choice_1,
-      choice_2_input: body.choice_2,
-      winner_id_input: body.winner,
-    });
+    await sql`SELECT handle_match(${body.choice_1}, ${body.choice_2}, ${body.winner})`;
 
-    if (error) {
-      console.error(error);
-      return NextResponse.json({ error: "database issue" }, { status: 500 });
-    }
-
-    return NextResponse.json(data);
+    return new NextResponse(null, { status: 204 });
   } catch (e) {
     console.error(e);
     return NextResponse.json(
