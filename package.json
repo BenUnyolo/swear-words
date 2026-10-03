@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^2.2.10",
-    "@marsidev/react-turnstile": "^0.2.1",
+    "@marsidev/react-turnstile": "^1.6.1",
     "@neondatabase/serverless": "^1.2.0",
     "@phosphor-icons/react": "^2.0.9",
     "@sendgrid/mail": "^8.1.6",

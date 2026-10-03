@@ -1,6 +1,6 @@
 "use client";
 
-import { Turnstile } from "@marsidev/react-turnstile";
+import { Turnstile, TurnstileInstance } from "@marsidev/react-turnstile";
 import { SyntheticEvent, useRef, useState } from "react";
 import { SelectField } from "./Select";
 import { Check, Warning } from "@phosphor-icons/react";
@@ -25,6 +25,7 @@ export default function Contact() {
   // const [hpTwo, setHpTwo] = useState<string>("");
 
   const formRef = useRef<HTMLFormElement | null>(null);
+  const turnstileRef = useRef<TurnstileInstance | null>(null);
 
   // submit
   const handleSubmit = async (
@@ -81,12 +82,14 @@ export default function Contact() {
         setErrorMessage(
           `Error ${res.status}: Please try again in a few minutes.`
         );
+        turnstileRef.current?.reset();
         setIsProcessing(false);
         return;
       }
       setIsFormSubmitted(true);
     } catch (e) {
       setErrorMessage(`Error Unknown: Please try again in a few minutes.`);
+      turnstileRef.current?.reset();
     }
 
     setIsProcessing(false);
@@ -175,6 +178,7 @@ export default function Contact() {
               }}
               className="mt-1"
               id="turnstileDiv"
+              ref={turnstileRef}
             />
           </div>
 
