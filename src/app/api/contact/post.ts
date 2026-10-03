@@ -1,4 +1,3 @@
-import { supabase } from "@/lib/supabaseClient";
 import { NextResponse } from "next/server";
 import sgMail from "@sendgrid/mail";
 import { encode } from "html-entities";
